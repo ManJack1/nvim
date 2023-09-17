@@ -355,6 +355,15 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
+
+  s(
+    { trig = "sub", wordTrig = false, snippetType = "autosnippet" },
+    fmta("<>_{<>}", {
+      i(1),
+      i(0),
+    }),
+    { condition = tex.in_mathzone }
+  ),
   s(
     { trig = "nmod", wordTrig = false, snippetType = "autosnippet", priority = 2000 },
     fmta("\\nmod{<>}", {
