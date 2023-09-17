@@ -13,7 +13,7 @@ local function configure_nabla()
   })
 end
 
--- 设置一个自动命令以便在打开 '.tex' 文件时调用 `configure_nabla`
+--设置一个自动命令以便在打开 '.tex' 文件时调用 `configure_nabla`
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("latex_nabla"),
   pattern = { "tex" },
