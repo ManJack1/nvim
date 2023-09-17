@@ -116,5 +116,7 @@ return {
       vim.g.vimtex_view_method = "zathura"
     end
     vim.g.maplocalleader = "m"
+
+    vim.g.vimtex_syntax_enabled = 0
   end,
 }

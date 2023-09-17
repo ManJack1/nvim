@@ -1,65 +1,65 @@
-local ls = require "luasnip"
+local ls = require("luasnip")
 local c = ls.choice_node
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 local fmta = require("luasnip.extras.fmt").fmta
-local tex = require "util.latex"
+local tex = require("util.latex")
 
 return {
   s({ trig = "dps", snippetType = "autosnippet" }, {
-    t "\\displaystyle",
+    t("\\displaystyle"),
   }, { condition = tex.in_mathzone }),
   s({ trig = "%%", snippetType = "autosnippet" }, {
-    t "\\%",
+    t("\\%"),
   }, { condition = tex.in_text }),
   s({ trig = "&&", snippetType = "autosnippet" }, {
-    t "\\&",
+    t("\\&"),
   }, { condition = tex.in_text }),
   s({ trig = "##", snippetType = "autosnippet" }, {
-    t "\\#",
+    t("\\#"),
   }, { condition = tex.in_text }),
   s({ trig = "thm", snippetType = "autosnippet" }, {
-    t "theorem",
+    t("theorem"),
   }, { condition = tex.in_text }),
   s({ trig = "propp", snippetType = "autosnippet" }, {
-    t "proposition",
+    t("proposition"),
   }, { condition = tex.in_text }),
   s({ trig = "deff", snippetType = "autosnippet" }, {
-    t "definition",
+    t("definition"),
   }, { condition = tex.in_text }),
   s({ trig = "exaa", snippetType = "autosnippet" }, {
-    t "example",
+    t("example"),
   }, { condition = tex.in_text }),
   s({ trig = "iee", snippetType = "autosnippet" }, {
-    t "i.e.",
+    t("i.e."),
   }, { condition = tex.in_text }),
   s({ trig = "stt", snippetType = "autosnippet" }, {
-    t "s.t.",
+    t("s.t."),
   }, { condition = tex.in_text }),
   s({ trig = "iso" }, {
-    t "isomorphic",
+    t("isomorphic"),
   }, { condition = tex.in_text }),
   s({ trig = "iso" }, {
-    t "isomorphism",
+    t("isomorphism"),
   }, { condition = tex.in_text }),
   s({ trig = "homo" }, {
-    t "homomorphism",
+    t("homomorphism"),
   }, { condition = tex.in_text }),
   s({ trig = "homo" }, {
-    t "homomorphic",
+    t("homomorphic"),
   }, { condition = tex.in_text }),
   s({ trig = "psp", snippetType = "autosnippet" }, {
-    t "\\(p\\)-subgroup",
+    t("\\(p\\)-subgroup"),
   }, { condition = tex.in_text }),
   s({ trig = "pgp", snippetType = "autosnippet" }, {
-    t "\\(p\\)-subgroup",
+    t("\\(p\\)-subgroup"),
   }, { condition = tex.in_text }),
   s({ trig = "spsp", snippetType = "autosnippet" }, {
-    t "Sylow \\(p\\)-subgroup",
+    t("Sylow \\(p\\)-subgroup"),
   }, { condition = tex.in_text }),
   s({ trig = "=>", snippetType = "autosnippet" }, {
-    t "\\(\\implies\\)",
+    t("\\(\\implies\\)"),
   }, { condition = tex.in_text }),
   s(
     { trig = "homework" },
@@ -80,7 +80,7 @@ return {
     \end{document}
     ]],
       {
-        c(1, { t "Abstract Algebra", t "Mathematics for Artificial Intelligence", t "Quantum Computer Science" }),
+        c(1, { t("Abstract Algebra"), t("Mathematics for Artificial Intelligence"), t("Quantum Computer Science") }),
         i(2, "number"),
         i(0),
       }

@@ -5,7 +5,7 @@
 local function augroup(name)
   return vim.api.nvim_create_augroup("mygroup_" .. name, { clear = true })
 end
-
+-----TODO:nabla.lua
 local function configure_nabla()
   require("nabla").enable_virt({
     autogen = true,
@@ -19,3 +19,4 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "tex" },
   callback = configure_nabla,
 })
+-----nabla.lua
