@@ -191,6 +191,7 @@ return {
 \usepackage{graphicx}
 \usepackage{annotate-equations}
 \usepackage{geometry}
+\usepackage{thmbox}
 \geometry{
  a4paper,
  total={170mm,257mm},
@@ -219,13 +220,17 @@ return {
 %\newcommand{\highlight}[2]{\colorbox{#1!17}{$#2$}}
 \newcommand{\hltext}[2]{\colorbox{#1!47}{$\displaystyle #2$}}
 
+
 %setting mathenv
-\newtheorem{theorem}{Theorem}
-\newtheorem{definition}{Definition}
-\newtheorem{proposition}{Proposition}
-\newtheorem{example}{Example}
-\newtheorem{note}{Note}
-\newtheorem{remark}{Remark}
+\newtheorem[M]{theorem}{Theorem}[section]
+\newtheorem[M]{lemma}[theorem]{Lemma}
+\newtheorem[M]{proposition}[theorem]{Proposition}
+\newtheorem[M]{corollary}[theorem]{Corollary}
+\newtheorem[M]{definition}{Definition}[section]
+\newtheorem[M]{example}{Example}[section]
+\newtheorem[M]{remark}{Remark}[section]
+
+
 
 
 title{{\Huge{\textbf{NoteTitle}}}\\--subtitle}
@@ -275,56 +280,37 @@ There is a location for preface
     fmta(
       [[
 %!TEX program = xelatex
-\documentclass[11pt, a4paper, oneside,UTF8]{ctexbook}
+\documentclass[11pt, a4paper, oneside, UTF8]{ctexbook}
 \usepackage{amsmath, amsthm, amssymb, bm, graphicx, hyperref, mathrsfs}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{arrows,shapes}
-\usetikzlibrary{tikzmark}
-\usetikzlibrary{calc}
-\usepackage{graphicx}
+\usetikzlibrary{backgrounds,arrows,shapes,tikzmark,calc}
 \usepackage{geometry}
 \usepackage{annotate-equations}
-\geometry{
- a4paper,
- total={170mm,257mm},
- left=20mm,
- top=20mm,
- }
+\usepackage{extarrows}
+\usepackage{thmbox}
 
-%setting annotate
+% Custom environments and commands
+\newenvironment{note}
+{\par\textcolor{blue}{\bfseries Note:}\itshape}{\par}
+\newenvironment{remark}
+{\par\textcolor{blue}{\bfseries Remark:}\itshape}{\par}
+\newtheorem[M]{theorem}{Theorem}[section]
+\newtheorem[M]{lemma}[theorem]{Lemma}
+\newtheorem[M]{definition}{Definition}[section]
 \renewcommand{\eqnannotationfont}{\bfseries\small}
-\usepackage{titlesec}
-\titleformat{\section}[hang]{\normalfont\Large\bfseries}{\thesection}{1em}{}
-\titlespacing{\section}{0pt}{\baselineskip}{0.5\baselineskip}
 
-
-
-%colorbox
-\newcommand{\hlmath}[2]{\colorbox{#1!17}{$\displaystyle #2$}}
-%\newcommand{\highlight}[2]{\colorbox{#1!17}{$#2$}}
-\newcommand{\hltext}[2]{\colorbox{#1!47}{$\displaystyle #2$}}
-
-
-
-%setting mathenv
-\newtheorem{theorem}{\indent 定理}[section]
-\newtheorem{lemma}[theorem]{\indent 引理}
-\newtheorem{proposition}[theorem]{\indent 命题}
-\newtheorem{corollary}[theorem]{\indent 推论}
-\newtheorem{definition}{\indent 定义}[section]
-\newtheorem{example}{\indent 例}[section]
-\newtheorem{remark}{\indent 注}[section]
-\newenvironment{solution}{\begin{proof}[\indent\bf 解]}{\end{proof}}
-\renewcommand{\proofname}{\indent\bf 证明}
-
-
-\title{{\Huge{\textbf{你好}}}\\--副标题}
+\title{{\Huge{\textbf{Linear Algebra}}}\\------HOFFMAN AND RAY KUNZE}
 \author{ManJack}
 \date{\today}
 \linespread{1.5}
 
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
 
 \begin{document}
 
@@ -332,27 +318,31 @@ There is a location for preface
 
 \pagenumbering{roman}
 \setcounter{page}{1}
+
 \newpage
 \begin{center}
-    \Huge\textbf{前言}
-\end{center}~\
+	\Huge\textbf{前言}
+\end{center}
 
-这是前言的地方
-~\\
+这是数学系线性代数的笔记，写给自己。如有错误请见谅，这些只是作为分享。
+
 \begin{flushright}
-    \begin{tabular}{c}
-        ManJack\\
-        \today
-    \end{tabular}
+	\begin{tabular}{c}
+		ManJack \\
+		\today
+	\end{tabular}
 \end{flushright}
 
 \newpage
-\pagenumbering{Roman}
-\setcounter{page}{1}
 \tableofcontents
 \newpage
-\setcounter{page}{1}
 \pagenumbering{arabic}
+\setcounter{page}{1}
+
+\chapter{Linear Equations}
+
+% Start your content here
+
 
 <>
 
