@@ -20,3 +20,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = configure_nabla,
 })
 -----nabla.lua
+
+-----TStree-sitter&Luasnip
+vim.cmd([[autocmd BufWritePost *.tex e]])

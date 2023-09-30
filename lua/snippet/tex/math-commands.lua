@@ -318,7 +318,7 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = ";r", wordTrig = false, snippetType = "autosnippet" },
+    { trig = "ff", wordTrig = false, snippetType = "autosnippet" },
     fmta("\\frac{<>}{<>}", {
       i(1),
       i(2),
@@ -326,10 +326,31 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = ";r", snippetType = "autosnippet", priority = 2000 },
+    { trig = "ff", snippetType = "autosnippet", priority = 2000 },
     fmta("\\frac{<>}{<>}", {
       d(1, get_visual),
       i(2),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  s(
+    {
+      trig = "left[]",
+      priority = 2000,
+    },
+    fmta("\\left[<>\\right]", {
+      i(1),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    {
+      trig = "left()",
+      priority = 2000,
+    },
+    fmta("\\left(<>\\right)", {
+      i(1),
     }),
     { condition = tex.in_mathzone }
   ),
@@ -361,6 +382,16 @@ return {
     fmta("<>_{<>}", {
       i(1),
       i(0),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  s(
+    { trig = "SubAndUp", wordTrig = false },
+    fmta("<>_{<>}^{<>}", {
+      i(1),
+      i(2),
+      i(3),
     }),
     { condition = tex.in_mathzone }
   ),

@@ -1,5 +1,6 @@
 return {
   "L3MON4D3/LuaSnip",
+  -- lazy_load = false,
   -- keys = function()
   --   return {}
   -- end,
