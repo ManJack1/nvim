@@ -6,4 +6,5 @@ return {
   --     silent = true,
   --   })
   -- end,
+  event = "VeryLazy",
 }

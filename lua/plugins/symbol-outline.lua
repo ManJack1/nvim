@@ -8,4 +8,5 @@ return {
     { "<leader>Ss", "<cmd>SymbolsOutlineOpen<cr>", desc = "symbolsOutlineOpen" },
     { "<leader>SS", "<cmd>SymbolsOutlineClose<cr>", desc = "symbolsOutlineClose" },
   },
+  event = "VeryLazy",
 }

@@ -4,4 +4,5 @@ return {
   config = function()
     require("competitest").setup()
   end,
+  event = "VeryLazy",
 }
