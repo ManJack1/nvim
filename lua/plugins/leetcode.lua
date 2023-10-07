@@ -18,4 +18,5 @@ return {
     { "<leader>ot", "<cmd>LBTest<cr>", desc = "Run Code" },
     { "<leader>os", "<cmd>LBSubmit<cr>", desc = "Submit Code" },
   },
+  event = "VeryLazy",
 }

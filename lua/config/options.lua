@@ -11,3 +11,4 @@ vim.g.syntastic_python_python_exec = "python3"
 vim.opt.wrap = true
 -- 当窗口尺寸变化时自动换行
 vim.opt.linebreak = true
+-- 光标框
