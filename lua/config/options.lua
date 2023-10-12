@@ -12,3 +12,7 @@ vim.opt.wrap = true
 -- 当窗口尺寸变化时自动换行
 vim.opt.linebreak = true
 -- 光标框
+
+---vimtex
+vim.g.vimtex_view_method = "zathura"
+vim.g.maplocalleader = "m"
