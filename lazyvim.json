@@ -1,1 +1,8 @@
-{"hashes":{"\/home\/manjack\/.local\/share\/nvim\/lazy\/LazyVim\/NEWS.md":"2035"},"extras":["lang.tex"]}
+{
+  "extras": [
+    "lang.tex"
+  ],
+  "news": {
+    "NEWS.md": "2035"
+  }
+}

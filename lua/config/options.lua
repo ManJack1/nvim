@@ -14,5 +14,13 @@ vim.opt.linebreak = true
 -- 光标框
 
 ---vimtex
-vim.g.vimtex_view_method = "zathura"
+local vim = vim
+
+local os_name = vim.fn.system("uname")
+
+if os_name:match("Darwin") then
+  vim.g.vimtex_view_method = "skim"
+elseif os_name:match("Linux") then
+  vim.g.vimtex_view_method = "zathura"
+end
 vim.g.maplocalleader = "m"
