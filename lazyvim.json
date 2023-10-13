@@ -1,5 +1,16 @@
 {
   "extras": [
+<<<<<<< HEAD
+=======
+    "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.formatting.black",
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.clangd",
+    "lazyvim.plugins.extras.lang.cmake",
+    "lazyvim.plugins.extras.lang.java",
+    "lazyvim.plugins.extras.lang.python",
+    "lazyvim.plugins.extras.lang.rust",
+>>>>>>> ff0aa129fe4ac898ecda698b2d5fe07c852a9552
     "lazyvim.plugins.extras.lang.tex"
   ],
   "news": {
