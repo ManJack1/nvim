@@ -1,8 +1,9 @@
 {
   "extras": [
-    "lang.tex"
+    "lazyvim.plugins.extras.lang.tex"
   ],
   "news": {
-    "NEWS.md": "2035"
-  }
+    "NEWS.md": "2123"
+  },
+  "version": 1
 }
