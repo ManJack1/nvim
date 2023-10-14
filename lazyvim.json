@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "extras": [
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.dap.nlua",
@@ -11,8 +12,15 @@
     "lazyvim.plugins.extras.lang.rust",
     "lazyvim.plugins.extras.lang.tex"
   ],
+=======
+  "extras": [],
+>>>>>>> bb36e7956f6dfa6c3dfad173a49d9407b73e6b49
   "news": {
     "NEWS.md": "2123"
   },
   "version": 2
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> bb36e7956f6dfa6c3dfad173a49d9407b73e6b49
