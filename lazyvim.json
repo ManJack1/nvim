@@ -5,13 +5,37 @@
     "lazyvim.plugins.extras.editor.aerial",
     "lazyvim.plugins.extras.formatting.black",
     "lazyvim.plugins.extras.formatting.prettier",
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+  "extras": [
+    "lazyvim.plugins.extras.dap.core",
+    "lazyvim.plugins.extras.dap.nlua",
+>>>>>>> f4ba77ff509e358f7ee9c6b55688c8e5929074d7
+>>>>>>> a9d291afcd64a2174c76b253d455d3f4ff9045d2
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.cmake",
     "lazyvim.plugins.extras.lang.go",
     "lazyvim.plugins.extras.lang.java",
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.python-semshi",
+<<<<<<< HEAD
     "lazyvim.plugins.extras.lang.ruby",
+=======
+<<<<<<< HEAD
+    "lazyvim.plugins.extras.lang.ruby",
+    "lazyvim.plugins.extras.lang.rust",
+    "lazyvim.plugins.extras.lang.tex",
+    "lazyvim.plugins.extras.linting.eslint",
+    "lazyvim.plugins.extras.test.core",
+    "lazyvim.plugins.extras.ui.edgy",
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.project",
+    "lazyvim.plugins.extras.vscode"
+  ],
+=======
+>>>>>>> a9d291afcd64a2174c76b253d455d3f4ff9045d2
     "lazyvim.plugins.extras.lang.rust",
     "lazyvim.plugins.extras.lang.tex",
     "lazyvim.plugins.extras.lang.yaml",
@@ -21,8 +45,27 @@
     "lazyvim.plugins.extras.util.project",
     "lazyvim.plugins.extras.vscode"
   ],
+<<<<<<< HEAD
+=======
+=======
+  "extras": [],
+>>>>>>> bb36e7956f6dfa6c3dfad173a49d9407b73e6b49
+>>>>>>> f4ba77ff509e358f7ee9c6b55688c8e5929074d7
+>>>>>>> a9d291afcd64a2174c76b253d455d3f4ff9045d2
   "news": {
     "NEWS.md": "2123"
   },
   "version": 2
+<<<<<<< HEAD
 }
+=======
+<<<<<<< HEAD
+}
+=======
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> bb36e7956f6dfa6c3dfad173a49d9407b73e6b49
+>>>>>>> f4ba77ff509e358f7ee9c6b55688c8e5929074d7
+>>>>>>> a9d291afcd64a2174c76b253d455d3f4ff9045d2
