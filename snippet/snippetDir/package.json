@@ -1,0 +1,38 @@
+{
+  "contributes": {
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
+        "language": "lua",
+        "path": "./project-specific/nvim-lua.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "typescript"
+        ],
+        "path": "./javascript.json"
+      },
+      {
+        "language": "all",
+        "path": "./allFiletypes.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
+        "language": "cpp",
+        "path": "./cpp.json"
+      },
+      {
+        "language": "tex",
+        "path": "./tex.json"
+      }
+    ]
+  },
+  "name": "my-snippets"
+}

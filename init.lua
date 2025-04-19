@@ -1,0 +1,58 @@
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+--设置函数接口
+
+-- Customize Nord theme with TokyoNight highlights
+-- vim.cmd([[
+--   highlight Normal       guifg=#c8d3f5 guibg=#2E3440
+--   highlight Comment      cterm=italic gui=italic guifg=#636da6
+--   highlight Constant     guifg=#ff966c
+--   highlight Identifier   guifg=#c099ff
+--   highlight Statement    guifg=#c099ff
+--   highlight PreProc      guifg=#86e1fc
+--   highlight Type         guifg=#65bcff
+--   highlight Special      guifg=#65bcff
+--   highlight Underlined   cterm=underline gui=underline
+--   highlight Todo         guifg=#2E3440 guibg=#ffc777
+--   highlight Error        guifg=#c53b53
+--   highlight Search       guifg=#c8d3f5 guibg=#3e68d7
+--   highlight IncSearch    guifg=#1b1d2b guibg=#ff966c
+--   highlight Visual       guibg=#4C566A
+--   highlight LineNr       guifg=#3b4261
+--   highlight CursorLineNr cterm=bold gui=bold guifg=#ff966c
+--   highlight MatchParen   cterm=bold gui=bold guifg=#ff966c
+--   highlight Pmenu        guifg=#c8d3f5 guibg=#3B4252
+--   highlight PmenuSel     guibg=#363c58
+--   highlight PmenuSbar    guibg=#27293a
+--   highlight PmenuThumb   guibg=#3b4261
+--   highlight StatusLine   guifg=#828bb8 guibg=#3B4252
+--   highlight StatusLineNC guifg=#3b4261 guibg=#3B4252
+--   highlight VertSplit    guifg=#1b1d2b
+--   highlight TabLine      guifg=#3b4261 guibg=#3B4252
+--   highlight TabLineSel   guifg=#1b1d2b guibg=#82aaff
+--   highlight TabLineFill  guibg=#1b1d2b
+--   highlight LspReferenceText           guibg=#3b4261
+--   highlight LspReferenceRead           guibg=#3b4261
+--   highlight LspReferenceWrite          guibg=#3b4261
+--   " highlight DiagnosticError            guifg=#c53b53
+--   " highlight DiagnosticWarn             guifg=#ffc777
+--   " highlight DiagnosticInfo             guifg=#0db9d7
+--   " highlight DiagnosticHint             guifg=#4fd6be
+--   " highlight DiagnosticVirtualTextError guifg=#c53b53 guibg=#322639
+--   " highlight DiagnosticVirtualTextWarn  guifg=#ffc777 guibg=#38343d
+--   " highlight DiagnosticVirtualTextInfo  guifg=#0db9d7 guibg=#203346
+--   " highlight DiagnosticVirtualTextHint  guifg=#4fd6be guibg=#273644
+-- ]])
+--
+-- vim.cmd([[
+--   highlight @variable            guifg=#c8d3f5
+--   highlight @variable.builtin    guifg=#ff757f
+--   highlight @type.builtin        guifg=#589ed7
+--   highlight @function            guifg=#82aaff
+--   highlight @keyword             cterm=italic gui=italic guifg=#fca7ea
+--   highlight @string              guifg=#c3e88d
+--   highlight @number              guifg=#ff966c
+--   highlight @constant            guifg=#ff966c
+--   highlight @operator            guifg=#89ddff
+--   highlight @punctuation         guifg=#89ddff
+-- ]])
