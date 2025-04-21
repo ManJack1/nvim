@@ -26,170 +26,198 @@ local parse = require("luasnip.util.parser").parse_snippet
 local ms = ls.multi_snippet
 local tex = require("util.md-env")
 local get_visual = function(args, parent)
-	if #parent.snippet.env.SELECT_RAW > 0 then
-		return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
-	else -- If SELECT_RAW is empty, return a blank insert node
-		return sn(nil, i(1))
-	end
+  if #parent.snippet.env.SELECT_RAW > 0 then
+    return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
+  else -- If SELECT_RAW is empty, return a blank insert node
+    return sn(nil, i(1))
+  end
 end
 
 return {
-	s(
-		{ trig = "ii", wordTrig = false, snippetType = "autosnippet" },
-		fmta(
-			[[
+  s(
+    { trig = "ii", wordTrig = false, snippetType = "autosnippet" },
+    fmta(
+      [[
      $<>$<>
       ]],
-			{
-				d(1, get_visual),
-				i(0),
-			}
-		),
-		{ condition = tex.in_text }
-	),
-	s(
-		{ trig = "dd", snippetType = "autosnippet" },
-		fmta(
-			[[
+      {
+        d(1, get_visual),
+        i(0),
+      }
+    ),
+    { condition = tex.in_text }
+  ),
+  s(
+    { trig = "dd", snippetType = "autosnippet" },
+    fmta(
+      [[
       $$ 
       <> 
       $$
       ]],
-			{
-				d(1, get_visual),
-			}
-		),
-		{ condition = tex.in_text }
-	),
-	s(
-		{ trig = "beg", snippetType = "autosnippet" },
-		fmta(
-			[[
+      {
+        d(1, get_visual),
+      }
+    ),
+    { condition = tex.in_text }
+  ),
+  s(
+    { trig = "beg", snippetType = "autosnippet" },
+    fmta(
+      [[
       \begin{<>}
         <>
       \end{<>}
       ]],
-			{
-				i(1),
-				i(0),
-				rep(1),
-			}
-		),
-		{ condition = tex.in_mathzone }
-	),
-	s(
-		{ trig = "bmat", snippetType = "autosnippet" },
-		fmta(
-			[[
+      {
+        i(1),
+        i(0),
+        rep(1),
+      }
+    ),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "bmat", snippetType = "autosnippet" },
+    fmta(
+      [[
       \begin{bmatrix}
         <>
       \end{bmatrix} <>
       ]],
-			{
-				i(1),
-				i(0),
-			}
-		),
-		{ condition = tex.in_mathzone }
-	),
-	s(
-		{ trig = "foot" },
-		fmta(
-			[[
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "vmat", snippetType = "autosnippet" },
+    fmta(
+      [[
+      \begin{vmatrix}
+        <>
+      \end{vmatrix} <>
+      ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "foot" },
+    fmta(
+      [[
       \footnote{<>}
       ]],
-			{
-				i(0),
-			}
-		),
-		{ condition = tex.in_text }
-	),
+      {
+        i(0),
+      }
+    ),
+    { condition = tex.in_text }
+  ),
 
-	s(
-		{ trig = "mark", desc = "不会产生编号" },
-		fmta(
-			[[
+  s(
+    { trig = "mark", desc = "不会产生编号" },
+    fmta(
+      [[
       \marginnote{<>}<>
       ]],
-			{
-				i(1),
-				i(0),
-			}
-		),
-		{ condition = tex.in_text }
-	),
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex.in_text }
+  ),
 
-	s(
-		{ trig = "side", desc = "会产生编号" },
-		fmta(
-			[[
+  s(
+    { trig = "side", desc = "会产生编号" },
+    fmta(
+      [[
       \sidenote{<>}<>
       ]],
-			{
-				i(1),
-				i(0),
-			}
-		),
-		{ condition = tex.in_text }
-	),
-	s(
-		{ trig = "topic" },
-		fmta(
-			[[
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex.in_text }
+  ),
+  s(
+    { trig = "topic" },
+    fmta(
+      [[
       \begin{topic}{\textbf{<>}}
         <>
       \end{topic}
       ]],
-			{
-				i(1),
-				i(0),
-			}
-		),
-		{ condition = tex.in_text }
-	),
-	s(
-		{ trig = "def" },
-		fmt(
-			[[
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = tex.in_text }
+  ),
+  s(
+    { trig = "def" },
+    fmt(
+      [[
 > [!Definition] 
 > {}
       ]],
-			{
-				d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
-			}
-		),
-		{ condition = tex.in_text } -- 片段仅在非数学环境中触发
-	),
-	s(
-		{ trig = "thm" },
-		fmt(
-			[[
+      {
+        d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
+      }
+    ),
+    { condition = tex.in_text } -- 片段仅在非数学环境中触发
+  ),
+  s(
+    { trig = "thm" },
+    fmt(
+      [[
 > [!Theorem] 
 > {}
       ]],
-			{
-				d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
-			}
-		),
-		{ condition = tex.in_text } -- 片段仅在非数学环境中触发
-	),
-	s(
-		{ trig = "exam" },
-		fmt(
-			[[
+      {
+        d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
+      }
+    ),
+    { condition = tex.in_text } -- 片段仅在非数学环境中触发
+  ),
+  s(
+    { trig = "exam" },
+    fmt(
+      [[
 > [!Example] 
 > {}
       ]],
-			{
-				d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
-			}
-		),
-		{ condition = tex.in_text } -- 片段仅在非数学环境中触发
-	),
-	s(
-		{ trig = "tags" },
-		fmta(
-			[[
+      {
+        d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
+      }
+    ),
+    { condition = tex.in_text } -- 片段仅在非数学环境中触发
+  ),
+  s(
+    { trig = "prop" },
+    fmt(
+      [[
+> [!Proposition]
+> {}
+      ]],
+      {
+        d(1, get_visual), -- 使用 get_visual 获取选中的文本或插入节点
+      }
+    ),
+    { condition = tex.in_text } -- 片段仅在非数学环境中触发
+  ),
+  s(
+    { trig = "tags" },
+    fmta(
+      [[
         ---
         id: <>
         aliases: <>
@@ -197,12 +225,12 @@ return {
         date: <>
         ---
         ]],
-			{
-				i(1), -- id 字段
-				i(2), -- aliases 字段
-				i(3), -- tags 字段
-				i(0), -- 自动插入当前日期
-			}
-		)
-	),
+      {
+        i(1), -- id 字段
+        i(2), -- aliases 字段
+        i(3), -- tags 字段
+        i(0), -- 自动插入当前日期
+      }
+    )
+  ),
 }
