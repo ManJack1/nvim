@@ -122,7 +122,7 @@ map("n", "<leader>mc", ":lua InsertTableRowBelow()<CR>", { desc = "Insert Table 
 --
 -- map("n", "<leader>sE", function()
 
-vim.api.nvim_set_keymap("i", "`", "<Plug>(Tabout)", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "`", "<Plug>(Tabout)", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap("i", "~", "<Plug>(TaboutBack)", { noremap = true, silent = true })
 -- 加载LuaSnip
 local ls = require("luasnip")
