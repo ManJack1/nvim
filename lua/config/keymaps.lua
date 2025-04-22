@@ -204,8 +204,23 @@ vim.keymap.set({ "i", "s" }, "<S-Tab>", function()
   return "<S-Tab>"
 end, { expr = true })
 
--- set keybinds for both INSERT and VISUAL.
-vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
-vim.api.nvim_set_keymap("s", "<C-n>", "<Plug>luasnip-next-choice", {})
-vim.api.nvim_set_keymap("i", "<C-p>", "<Plug>luasnip-prev-choice", {})
-vim.api.nvim_set_keymap("s", "<C-p>", "<Plug>luasnip-prev-choice", {})
+-- Set up keymaps with conditional logic
+vim.keymap.set({ "i", "s" }, "<C-n>", function()
+  local luasnip = require("luasnip")
+  if luasnip.choice_active() then
+    return "<Plug>luasnip-next-choice"
+  else
+    vim.notify("No active choice nodes", vim.log.levels.INFO)
+    return ""
+  end
+end, { expr = true })
+
+vim.keymap.set({ "i", "s" }, "<C-p>", function()
+  local luasnip = require("luasnip")
+  if luasnip.choice_active() then
+    return "<Plug>luasnip-prev-choice"
+  else
+    vim.notify("No active choice nodes", vim.log.levels.INFO)
+    return ""
+  end
+end, { expr = true })
