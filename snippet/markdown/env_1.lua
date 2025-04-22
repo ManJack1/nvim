@@ -78,6 +78,29 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
+    { trig = "mat", regTrig = false, wordTrig = false },
+    fmta(
+      [[
+      \begin{<>}
+      <>
+      \end{<>}
+      ]],
+      {
+        c(1, {
+          t("bmatrix"),
+          t("vmatrix"),
+          t("pmatrix"),
+          t("Vmatrix"),
+          t("matrix"),
+          t("smallmatrix"),
+        }),
+        i(2),
+        rep(1), -- 重复第一个节点的内容
+      }
+    ),
+    { condition = tex.in_mathzone }
+  ),
+  s(
     { trig = "bmat", snippetType = "autosnippet" },
     fmta(
       [[

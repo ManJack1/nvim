@@ -1,0 +1,341 @@
+
+# 线性方程组的解法
+
+## 解线性方程组的矩阵消元法
+
+> [!Example]
+>将前面系数提取出来记录为：
+> $$
+\begin{cases}
+ x_1+3x_{2}+x_3=2 \\
+3x_1+4x_2+2x_3 = 9 \\
+-x_1-5x_{2}+4x_{3} = 10\\
+2x_{1}+7x_{2} +x_{3}= 1
+\end{cases} \longrightarrow \begin{bmatrix}
+1 &3&1&2\\
+3&4&2&9\\
+-1&-5&4&10\\
+2&7&1&1
+\end{bmatrix}  
+$$
+
+将上述例子化简后的结果位：
+$$
+\begin{bmatrix}
+1 & 3 & 1 & 2 \\
+0 & 1 & -1 & -1 \\
+0 & 0 & 3 & 6 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix}  
+$$
+
+矩阵的初等行变换：
+1
+
+$$
+\begin{cases}
+a_{11}x_1+a_{12}x_2 = b_1 \\
+a_{21}x_1+a_{22}x_2 = b_2 \\
+\end{cases}
+$$
+
+我们可以将其化为：
+$$
+\begin{bmatrix}
+  a_{11} & a_{12} & b_1 \\
+  a_{21} & a_{22} & b_2 \\
+\end{bmatrix}
+\xrightarrow{R_2 \leftarrow R_2 - \frac{a_{21}}{a_{11}} R_1}
+\begin{bmatrix}
+  a_{11} & a_{12} & b_1 \\
+  0 & a_{22} - \frac{a_{21}}{a_{11}} a_{12} & b_2 - \frac{a_{21}}{a_{11}} b_1 \\
+\end{bmatrix}
+$$
+
+## 行列式
+### 逆序数
+
+> [!Theorem]
+> 对换改变n元排列逆序数的奇偶性
+
+proof:
+首先考虑相邻元素对换的情况,若序列n的排列为：
+$$
+n = \begin{pmatrix}
+  \cdots &i & j&\cdots\\
+\end{pmatrix}
+$$
+对换$i,j$后：
+$$
+n_{1} =
+\begin{pmatrix}
+\cdots&j&i&\cdots
+\end{pmatrix}
+$$
+则无非两种情况：
+$$
+\begin{cases}
+  \tau(n_{1}) = \tau(n) - 1 & \text{(i,j)是逆序对} \\
+\tau(n_{1}) = \tau(n) + 1 & \text{(i,j)不是逆序对}
+\end{cases}
+$$
+
+那有了相邻的情况，借此我们可以推广到相距较远的情况
+若n的排列为：
+$$
+n =
+\begin{pmatrix}
+  \cdots&i&\overbrace{\cdots}^{k}&j&\cdots \\
+\end{pmatrix}
+$$
+则我们可以逐项移动，当j移到到i有，此时移到了k+1次。
+$$
+\begin{pmatrix}
+  \cdots&j&i&\cdots&\cdots \\
+\end{pmatrix}
+$$
+
+在将i移动到j的位置则有k次：
+$$
+\begin{pmatrix}
+  \cdots&j&\overbrace{\cdots}^{k}&i&\cdots \\
+\end{pmatrix}
+$$
+这时候完成了对换，总相邻对换数为k+1+k = 2k+1,所以改变了奇偶性。
+
+> [!Theorem]
+> 若对一个完全顺序排列的n元排列进行k次对换，则其逆序数的奇偶性与k的奇偶性相同。
+
+## n阶行列式的定义
+
+> [!Definition]
+> 设$$
+A = (a_{ij})  = \left|\begin{matrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{matrix}\right| = \sum\limits_{j_1j_2 \cdots j_n}^{}(-1)^{\tau(j_1j_2 \cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}
+$$
+
+> n阶的行列式记作 $\left|A\right|$ or $\mathrm{d}et \textbf{A}$
+
+主对角线下方全为0的行列式称为**上三角行列式**，主对角线上的元素称为主对角线元素。
+$$
+A = \left|\begin{matrix}
+  a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
+0      & a_{22} & a_{23} & \cdots & a_{2n} \\
+0      & 0      & a_{33} & \cdots & a_{3n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0      & 0      & 0      & \cdots & a_{nn}
+\end{matrix}\right|
+$$
+
+由于 $\left|A\right| = \sum\limits_{j_1j_2 \cdots j_n}^{}(-1)^{\tau(j_1j_2 \cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{n j_n}$,从最下面往上取我们可以得知，
+$$
+\begin{cases}
+a_{nj_n} = a_{nn} & j_{n} = n\\
+a_{(n-1)j_{n-1}} = a_{(n-1)(n-1)} & j_{(n-1)} = n-1\\
+\vdots & \\
+a_{ij_i} = a_{ii} & j_i = i\\
+a_{1j_1} = a_{11} & j_1 = 1\\
+\end{cases}
+$$
+则上三角n的行列式的值为：$\left|A\right| = \prod\limits_{i}^{n}a_{ii} = a_{11}a_{22}\cdots a_{nn}$
+
+#### **命题1**
+
+给定行指标的一个排列$i_1,i_2,\cdots,i_n$,A的行列式为$$
+\left|A\right| = \sum\limits_{i_1i_2 \cdots i_n}^{}(-1)^{\tau(i_1i_2 \cdots i_n)+\tau(k_1k_2 \cdots k_n)}a_{i_1k_1}a_{i_2k_2}\cdots a_{i_nk_n}
+$$
+proof:
+对于单个排列,假设该排列$$n = a_{i_1k_1}a_{i_2k_2}\cdots a_{i_nk_n}$$经过s次变换成为$$a_{1s_1}a_{2s_2}\cdots a_{ns_n}$$，则该排列的逆序数为$\tau(s_1s_2 \cdots s_n)$，则对于行的逆序数我们可得知$\tau(i_1 i_2 \cdots i_n) = s$,且有对于列逆序数$$(-1)^{\tau(s_1s_2 \cdots s_n)} = (-1)^{\tau(k_1k_2 \cdots k_n) + s} = (-1)^{\tau(i_1i_2 \cdots i_n) + \tau(k_1k_2 \cdots k_n)}$$
+
+则由此变换我们可以得知：
+$$
+\left|A\right| = \sum\limits_{i_1i_2 \cdots i_n}^{}(-1)^{\tau(i_1i_2 \cdots i_n)+\tau(k_1k_2 \cdots k_n)}a_{i_1k_1}a_{i_2k_2}\cdots a_{i_nk_n} = \sum\limits_{j_1j_2 \cdots j_n}^{}(-1)^{\tau(j_1j_2 \cdots j_n)}a_{1j_1}a_{2j_2}\cdots a_{nj_n}
+$$
+> $j_1,j_2,\cdots,j_n$是$i_1,i_2,\cdots,i_n$变换成全排列$1,2,\cdots,n$后$k_1,k_2,\cdots,k_n$的对于变化。
+>所以第一步行逆序数相加是为了将行变为全排列，因为行列同排列的逆序数也需要加上行的逆序数变为全排列后的逆序数
+
+## 行列式的性质
+
+> [!Proposition]
+> 行列互换，$det(A)$不变
+
+proof：
+
+设行列式$A$:
+$$
+\left|A\right|= \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+$$
+则
+$$
+\left|A^{T}\right| = \begin{vmatrix}
+  a_{11} & a_{21} & \cdots & a_{n1} \\
+a_{12} & a_{22} & \cdots & a_{n2} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{1n} & a_{2n} & \cdots & a_{nn}
+\end{vmatrix}  
+$$
+
+由$\left|A\right| = \sum\limits_{j_1 j_2 \cdots j_n}^{}(-1)^{\tau(i_1 i_2 \cdots i_n) + \tau(j_1 j_2 \cdots j_n)} a_{i_1j_1}a_{i_2j_2} \cdots a_{i_nj_n}$
+
+若将$A$和$A^{T}$按定义展开则：
+$$
+\left|A\right|  = \sum\limits_{i_1i_2 \cdots}^{}(-1)^{\tau(i_1i_2 \cdots i_n)}a_{1i_1}a_{2i_2}\cdots a_{ni_n}
+$$
+
+$$
+\left|A^{T}\right| = \sum\limits_{i_1 i_2 \cdots i_n}^{}(-1)^{\tau(i_1 i_2 \cdots i_n)+\tau(12 \cdots n)} a_{i_1 1}a_{i_2 2}\cdots a_{i_n n}
+$$
+
+很容易可以知道$\left|A\right| = \left|A^{T}\right| = \sum\limits_{i_1 i_2 \cdots i_n}^{}(-1)^{\tau(i_1i_2 \cdots i_n)}a_{1i_1}a_{2i_2}\cdots a_{ni_n} = \sum\limits_{i_1 i_2 \cdots i_n}^{}(-1)^{\tau(i_1 i_2 \cdots i_n)}a_{i_1 1}a_{i_2 2}\cdots a_{i_n n}$
+
+根据公式的理解可以得知在$a_{1i_1}a_{2i_2} \cdots a_{ni_n}$($a_{ij}$，i代表行)和$a_{i_1 1}a_{i_2 2} \cdots a_{i_n n}$($a_{ij}$,j代表行)都是表示相同排列,因为 $\tau(i_1i_2 \cdots i_n)$相同且排列顺序和选元素顺序相同，则该行列式相同。
+
+> [!Proposition]
+> 行列式一行的公因子可以提到行列式外面。
+$$
+\begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+ka_{k 1} & ka_{k2} & \cdots & ka_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix} = k\begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{k1} & a_{k2} & \cdots & a_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+$$
+proof:
+设$A$为行列式,则有
+$$
+\left|A\right| = \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+ka_{k 1} & ka_{k2} & \cdots & ka_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}  = \sum\limits_{i_1 i_2 \cdots i_n}^{}(-1)^{\tau(i_1 i_2 \cdots i_n)}a_{1 i_1} \cdots ka_{k i_k} \cdots a_{n i_n} = k \sum\limits_{i_1 i_2 \cdots}^{} (-1)^{\tau(i_1 i_2 \cdots i_n)}a_{1i_1}\cdots a_{ki_k}\cdots a_{ni_n} = k \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{k1} & a_{k2} & \cdots & a_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+$$
+
+> [!Proposition]
+> 行列式若是两组数之和则有：
+>$$
+\begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{k 1}+b_{k 1} & a_{k2}+b_{k2} & \cdots & a_{kn}+b_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}   = \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{k 1} & a_{k2} & \cdots & a_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix} + \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots \\
+b_{ k 1} & b_{k2} & \cdots & b_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+$$
+
+proof:
+由$$
+\begin{align*}
+\begin{bmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{k 1}+b_{k 1} & a_{k2}+b_{k2} & \cdots & a_{kn}+b_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{bmatrix}   &= \sum\limits_{i_1 \cdots i_n}^{}(-1)^{i_1 \cdots i_n}a_{1i_1}\cdots (a_{ki_k}+b_{k+i_k}) \cdots a_{ni_n}\\
+& = \sum\limits_{i_1 \cdots i_n}^{}(-1)^{i_1 \cdots i_n}a_{1i_1}\cdots a_{ki_k} \cdots a_{ni_n} + \sum\limits_{i_1 \cdots i_n}^{}(-1)^{i_1 \cdots i_n}a_{1i_1}\cdots b_{k+i_k} \cdots a_{ni_n}\\
+&= \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{k 1} & a_{k2} & \cdots & a_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}  + \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+\vdots & \vdots & \vdots & \vdots \\
+b_{k 1} & b_{k2} & \cdots & b_{kn} \\
+\vdots & \vdots & \vdots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+\end{align*}
+$$
+
+> [!Proposition]
+> 两行互换，行列式的值变号
+>$$
+\begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{s 1} & a_{s2} & \cdots & a_{sn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{k 1} & a_{k2} & \cdots & a_{kn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}   =  - \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{k 1} & a_{k2} & \cdots & a_{kn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{s 1} & a_{s2} & \cdots & a_{sn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}  
+$$
+
+proof:
+右边为：
+$$
+\begin{align}
+-\begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{k 1} & a_{k2} & \cdots & a_{kn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{s 1} & a_{s2} & \cdots & a_{sn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+  &= - \sum\limits_{i_1 \cdots i_k \cdots i_s \cdots}^{} (-1)^{\tau(i_1 \cdots i_k \cdots i_s \cdots)} a_{1i_1}\cdots a_{ki_k}\cdots a_{si_s}\cdots  a_{ni_n}\\
+& = \sum\limits_{i_1 \cdots i_s \cdots i_k \cdots}^{} (-1)^{\tau(i_1 \cdots i_s \cdots i_k \cdots)} a_{1i_1}\cdots a_{s i_s}\cdots a_{k i_k} \cdots a_{ni_n} \\
+& = \begin{vmatrix}
+  a_{11} & a_{12} & \cdots & a_{1n} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{s 1} & a_{s2} & \cdots & a_{sn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{k 1} & a_{k2} & \cdots & a_{kn} \\
+  \vdots & \vdots & \vdots & \vdots \\
+  a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}  
+\end{align}
+$$
+可以知道加了负号之后改变了$\tau$的读取顺序$$\tau(i_1 \cdots i_k \cdots i_s \cdots i_n) \to  \tau(i_1 \cdots i_s \cdots i_k \cdots i_n)$$
+且它们选取顺序的行数相同，则它们的行列式相同。

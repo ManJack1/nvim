@@ -119,8 +119,6 @@ return {
     ),
     { condition = tex.in_mathzone }
   ),
-
-  s({ trig = "to", snippetType = "autosnippet" }, t("\\to "), { condition = tex.in_mathzone }),
   s(
     { trig = "sq", snippetType = "autosnippet" },
     fmta(
@@ -383,4 +381,43 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
+
+  postfix(".)", {
+    f(function(_, parent)
+      return "(" .. parent.snippet.env.POSTFIX_MATCH .. ")"
+    end, {}),
+  }),
+  postfix(".]", {
+    f(function(_, parent)
+      return "\\left[ " .. parent.snippet.env.POSTFIX_MATCH .. " \\right]"
+    end, {}),
+  }),
+  postfix(".|", {
+    f(function(_, parent)
+      return "\\left| " .. parent.snippet.env.POSTFIX_MATCH .. " \\right|"
+    end, {}),
+  }),
+
+  s("paren_change", {
+    c(1, {
+      sn(nil, { t("("), r(1, "user_text"), t(")") }),
+      sn(nil, { t("["), r(1, "user_text"), t("]") }),
+      sn(nil, { t("{"), r(1, "user_text"), t("}") }),
+    }),
+  }, {
+    stored = {
+      user_text = i(1, "default_text"),
+    },
+  }),
+  -- s("mat", {
+  --   c(1, {
+  --     sn(nil, { t("\\begin{vmatrix}"), r(1, "user_text"), t("\\end{vmatrix}") }),
+  --     sn(nil, { t("["), r(1, "user_text"), t("]") }),
+  --     sn(nil, { t("{"), r(1, "user_text"), t("}") }),
+  --   }),
+  -- }, {
+  --   stored = {
+  --     user_text = i(1, "default_text"),
+  --   },
+  -- }),
 }
