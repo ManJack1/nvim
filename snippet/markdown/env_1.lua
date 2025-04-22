@@ -78,7 +78,7 @@ return {
     { condition = tex.in_mathzone }
   ),
   s(
-    { trig = "mat", regTrig = false, wordTrig = false, snippetType = "autosnippet" },
+    { trig = "Mat", regTrig = false, wordTrig = false, snippetType = "autosnippet" },
     fmta(
       [[
       \begin{<>}
