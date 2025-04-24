@@ -49,16 +49,28 @@ return {
   ),
   s(
     { trig = "dd", snippetType = "autosnippet" },
-    fmta(
-      [[
-      $$ 
-      <> 
-      $$
-      ]],
-      {
-        d(1, get_visual),
-      }
-    ),
+    c(1, {
+      fmta(
+        [[
+        $$ 
+        <> 
+        $$
+        ]],
+        {
+          d(1, get_visual),
+        }
+      ),
+      fmt(
+        [[
+        >$$
+        {}
+        >$$
+        ]],
+        {
+          d(1, get_visual),
+        }
+      ),
+    }),
     { condition = tex.in_text }
   ),
   s(

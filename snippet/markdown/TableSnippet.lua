@@ -687,6 +687,24 @@ Remark:}\itshape\setlength{\parindent}{2em}}{\par}
     { condition = tex.in_mathzone }
   ),
 
+  s(
+    { trig = "norfun", decr = "Matrix of linear equations" },
+    fmta(
+      [[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1m}x_m = b_1 \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2m}x_m = b_2 \\
+\vdots \\
+a_{n1}x_1 + a_{n2}x_2 + \cdots + a_{nm}x_m = b_n
+\end{cases} <>
+  ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = tex.in_mathzone }
+  ),
+
   s({ trig = "tb", dscr = "textbf of latex" }, fmta([[\textbf{<>}]], { i(1) })),
   s(
     { trig = "MRLE", decr = "Matrix of linear equations" },

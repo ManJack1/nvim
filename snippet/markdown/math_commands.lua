@@ -307,16 +307,16 @@ return {
     "series",
     fmta(
       [[
-<>_1, <>_2, \cdots, <>_<> <>
+<>_1, <>_2, \cdots, <>_<>
     ]],
       {
         i(1), -- 输入变量名称，默认 "x"
         rep(1), -- 自动复用变量名称
         rep(1), -- 再次复用变量名称
-        i(2, "n"), -- 输入最大下标，默认 "n"
-        i(0),
+        i(0, "n"), -- 输入最大下标，默认 "n"
       }
-    )
+    ),
+    { condition = tex.in_mathzone }
   ),
   s(
     { trig = "bc", regTrig = true, snippetType = "autosnippet" },
