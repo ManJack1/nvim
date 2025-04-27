@@ -73,7 +73,7 @@ vim.g.vimtex_compiler_progname = "nvr"
 -- vim.g.vimtex_view_general_viewer = "zathura"
 
 if vim.g.neovide then
-  vim.o.guifont = "Victor Mono:h14" -- text below applies for VimScript
+  vim.o.guifont = "JetBrainsMono Nerd Font" -- text below applies for VimScript
 end
 vim.g.tokyonight_dark_float = false
 
