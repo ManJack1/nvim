@@ -268,23 +268,4 @@ return {
       }
     )
   ),
-  s(
-    { trig = "Tags" },
-    fmta(
-      [[
-        ---
-        id: <>
-        aliases: <>
-        tags: [<>]
-        date: <>
-        ---
-        ]],
-      {
-        i(1), -- id 字段
-        i(2), -- aliases 字段
-        i(3), -- tags 字段
-        i(0), -- 自动插入当前日期
-      }
-    )
-  ),
 }
