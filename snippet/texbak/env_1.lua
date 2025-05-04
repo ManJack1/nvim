@@ -33,7 +33,7 @@ return {
         rep(1),
       }
     ),
-    { condition = line_begin }
+    { condition = tex.in_text }
   ),
   s(
     { trig = "cmat", snippetType = "autosnippet" },
@@ -51,6 +51,6 @@ return {
         i(0),
       }
     ),
-    { condition = tex.in_math() }
+    { condition = tex.in_math }
   ),
 }
