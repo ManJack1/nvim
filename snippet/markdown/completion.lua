@@ -334,7 +334,25 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
-
+  ---
+  s(
+    { trig = "(%a+_%w+)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+  s(
+    { trig = "(%a+_%{[^}]+%})%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
   -- 匹配括号内容后跟 .mbb
   s(
     { trig = "%((.+)%)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 500 },
