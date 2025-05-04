@@ -292,4 +292,68 @@ return {
     }),
     { condition = tex.in_mathzone }
   ),
+  s(
+    { trig = "(%a)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 100 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  -- 匹配多个字母后跟 .mbb
+  s(
+    { trig = "(%a+)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 200 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  -- 匹配 LaTeX 命令后跟 .mbb
+  s(
+    { trig = "(\\%a+)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 1000 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  -- 匹配带参数的 LaTeX 命令后跟 .mbb
+  s(
+    { trig = "(\\%a+%{[^}]+%})%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 2000 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  -- 匹配括号内容后跟 .mbb
+  s(
+    { trig = "%((.+)%)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 500 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
+
+  -- 匹配带2个反斜杠命令的表达式
+  s(
+    { trig = "(\\?%a+\\%a+)%.mbb", regTrig = true, wordTrig = false, snippetType = "autosnippet", priority = 1500 },
+    fmta("\\mathbb{<>}", {
+      f(function(_, snip)
+        return snip.captures[1]
+      end),
+    }),
+    { condition = tex.in_mathzone }
+  ),
 }
