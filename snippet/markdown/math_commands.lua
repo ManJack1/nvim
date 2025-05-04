@@ -219,7 +219,7 @@ return {
     { trig = "l%[", regTrig = true, snippetType = "autosnippet" },
     fmta(
       [[
-        \left[ <> \right
+        \left[ <> \right]
         ]],
       {
         i(0),
@@ -397,7 +397,6 @@ return {
       return "\\left| " .. parent.snippet.env.POSTFIX_MATCH .. " \\right|"
     end, {}),
   }),
-
   s("paren_change", {
     c(1, {
       sn(nil, { t("("), r(1, "user_text"), t(")") }),

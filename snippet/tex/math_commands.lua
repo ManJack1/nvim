@@ -221,7 +221,7 @@ return {
     { trig = "l%[", regTrig = true, snippetType = "autosnippet" },
     fmta(
       [[
-        \left[ <> \right
+        \left[ <> \right]
         ]],
       {
         i(0),
