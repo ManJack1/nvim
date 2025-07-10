@@ -51,6 +51,6 @@ return {
         i(0),
       }
     ),
-    { condition = tex.in_math() }
+    { condition = tex.in_math }
   ),
 }
