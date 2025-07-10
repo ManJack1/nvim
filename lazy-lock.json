@@ -4,6 +4,12 @@
   "LuaSnip": { "branch": "master", "commit": "66b5c2707e624dcd2cd3605676c64a2efe47e9d1" },
   "SchemaStore.nvim": { "branch": "main", "commit": "47af5f9bc7b344ad879405901a2ff5589d8561c8" },
   "aerial.nvim": { "branch": "master", "commit": "5c0df1679bf7c814c924dc6646cc5291daca8363" },
+<<<<<<< HEAD
+||||||| bc4a6f0
+  "alpha-nvim": { "branch": "main", "commit": "a35468cd72645dbd52c0624ceead5f301c566dff" },
+=======
+  "ai-commit.nvim": { "branch": "master", "commit": "69d3b8817e30ae6cbe2902c2f7956044d12eba7c" },
+>>>>>>> 46cb82d9e0011f6eca37b762a44a2a2db70ad8bd
   "alpha-nvim": { "branch": "main", "commit": "2b3cbcdd980cae1e022409289245053f62fb50f6" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "catppuccin": { "branch": "main", "commit": "fa42eb5e26819ef58884257d5ae95dd0552b9a66" },
@@ -18,7 +24,7 @@
   "compiler.nvim": { "branch": "main", "commit": "725e4dc7c4e261a11c98de020fe268f0bb69ad4b" },
   "conform.nvim": { "branch": "master", "commit": "973f3cb73887d510321653044791d7937c7ec0fa" },
   "copilot-cmp": { "branch": "master", "commit": "15fc12af3d0109fa76b60b5cffa1373697e261d1" },
-  "copilot.lua": { "branch": "master", "commit": "46f4b7d026cba9497159dcd3e6aa61a185cb1c48" },
+  "copilot.lua": { "branch": "master", "commit": "3680bebcc95dfd6c7509466367e66f6dc64a5140" },
   "crates.nvim": { "branch": "main", "commit": "5d8b1bef686db0fabe5f1bb593744b617e8f1405" },
   "dial.nvim": { "branch": "master", "commit": "78bd73aaf2b9c8f80715a878feaf56f7ffa8b6ff" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
@@ -44,7 +50,13 @@
   "mini.ai": { "branch": "main", "commit": "96cd250fdea1fec929a62c7432de73e0f59788cd" },
   "mini.hipatterns": { "branch": "main", "commit": "d71c21167d6bd5f21c9ecf90912c510f9edfc02b" },
   "mini.icons": { "branch": "main", "commit": "94848dad1589a199f876539bd79befb0c5e3abf0" },
+<<<<<<< HEAD
   "mini.nvim": { "branch": "main", "commit": "ae198e51b90d3bf930a1b0137642cdf7432f55d1" },
+||||||| bc4a6f0
+  "mini.nvim": { "branch": "main", "commit": "48f48e4b3f317e9da34ee7a01958b4c5018e2d34" },
+=======
+  "mini.nvim": { "branch": "main", "commit": "66d3cf727d7bf2ba59df02e710f39640d9af823f" },
+>>>>>>> 46cb82d9e0011f6eca37b762a44a2a2db70ad8bd
   "mini.pairs": { "branch": "main", "commit": "42407ccb80ec59c84e7c91d815f42ed90a8cc093" },
   "mini.surround": { "branch": "main", "commit": "1a2b59c77a0c4713a5bd8972da322f842f4821b1" },
   "neotest": { "branch": "master", "commit": "61d1951131e6770c815243d84a27ccd0436ec61c" },
