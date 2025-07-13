@@ -6,7 +6,7 @@ return {
       require("render-markdown").setup({
         render_modes = true,
         latex = {
-          enabled = true,
+          enabled = false,
           render_modes = false,
           converter = "latex2text",
           highlight = "RenderMarkdownMath",
