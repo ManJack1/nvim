@@ -94,15 +94,15 @@ return {
     -- stylua: ignore
     dashboard.section.buttons.val = {
         -- 使用 fzf-lua 替代 LazyVim.pick()
-        dashboard.button("f", " " .. " Find file",      "<cmd>lua require('fzf-lua').files()<cr>"),
+        dashboard.button("f", " " .. " Find file",      "<cmd>lua Snacks.dashboard.pick('files')<cr>"),
         dashboard.button("n", " " .. " New file",       [[<cmd> ene <BAR> startinsert <cr>]]),
         -- 使用 fzf-lua 替代 LazyVim.pick("oldfiles")
-        dashboard.button("r", " " .. " Recent files",   "<cmd>lua require('fzf-lua').oldfiles()<cr>"),
+        dashboard.button("r", " " .. " Recent files",   "<cmd>lua Snacks.dashboard.pick('oldfiles')<cr>"),
         -- 使用 fzf-lua 替代 LazyVim.pick("live_grep")
         -- 你也可以根据需要使用 'live_grep' 或其他 fzf-lua 提供的 grep 函数
-        dashboard.button("g", " " .. " Find text",      "<cmd>lua require('fzf-lua').live_grep_native()<cr>"),
+        dashboard.button("g", " " .. " Find text",      "<cmd>lua Snacks.dashboard.pick('live_grep')<cr>"),
         -- 使用 fzf-lua 在配置目录中查找文件
-        dashboard.button("c", " " .. " Config",         "<cmd>lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') })<cr>"),
+        dashboard.button("c", " " .. " Config",         "<cmd>lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})<cr>"),
         dashboard.button("s", " " .. " Restore Session", [[<cmd> lua require("persistence").load() <cr>]]),
         dashboard.button("x", " " .. " Lazy Extras",    "<cmd> LazyExtras <cr>"),
         dashboard.button("l", "󰒲 " .. " Lazy",           "<cmd> Lazy <cr>"),
