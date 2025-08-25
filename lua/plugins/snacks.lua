@@ -1,7 +1,6 @@
 -- lazy.nvim
 return {
   "folke/snacks.nvim",
-
   ---@type snacks.Config
   opts = {
     image = {
@@ -18,7 +17,7 @@ return {
         inline = true,
         -- render the image in a floating window
         -- only used if `opts.inline` is disabled
-        -- float = true,
+        float = true,
         max_width = 40,
         max_height = 40,
         math = {
