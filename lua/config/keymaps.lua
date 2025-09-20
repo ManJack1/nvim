@@ -76,54 +76,9 @@ map("i", "<C-k>", "<Cmd>lua jump_to_previous_cell()<CR>", opts)
 -- Table Mode 快捷键设置
 map("n", "<leader>mm", ":TableModeToggle<CR>", { desc = "Toggle Table Mode" })
 map("n", "<leader>mr", ":TableModeRealign<CR>", { desc = "Realign Table" })
--- map("n", "<leader>mdd", ":TableDeleteRow<CR>", { desc = "Delete Row" })
--- map("n", "<leader>mdc", ":TableDeleteColumn<CR>", { desc = "Delete Column" })
--- map("n", "<leader>mic", ":TableInsertColumnAfter<CR>", { desc = "Insert Column After" })
--- map("n", "<leader>miC", ":TableInsertColumnBefore<CR>", { desc = "Insert Column Before" })
 map("n", "<leader>mc", ":lua InsertTableRowBelow()<CR>", { desc = "Insert Table Row Below" })
+map("n", "<leader>mb", ":MdEval<CR>", { desc = "Insert Table Row Below" })
 
--- 将 <Tab> 映射为展开或向前跳转片段
--- map("i", "<Tab>", function()
---   if luasnip.jumpable() then
---     luasnip.jump(1)
---   else
---     -- 默认行为: 如果没有片段跳转，则插入一个 Tab
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n", true)
---   end
--- end, { silent = true })
---
--- map("s", "<Tab>", function()
---   if luasnip.jumpable() then
---     luasnip.jump(1)
---   else
---     -- 默认行为
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n", true)
---   end
--- end, { silent = true })
---
--- -- 将 <S-Tab> 映射为向后跳转片段
--- map("i", "<S-Tab>", function()
---   if luasnip.jumpable(-1) then
---     luasnip.jump(-1)
---   else
---     -- 默认行为
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true), "n", true)
---   end
--- end, { silent = true })
---
--- map("s", "<S-Tab>", function()
---   if luasnip.jumpable(-1) then
---     luasnip.jump(-1)
---   else
---     -- 默认行为
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true), "n", true)
---   end
--- end, { silent = true })
---
--- map("n", "<leader>sE", function()
-
--- vim.api.nvim_set_keymap("i", "`", "<Plug>(Tabout)", { noremap = true, silent = true })
--- vim.api.nvim_set_keymap("i", "~", "<Plug>(TaboutBack)", { noremap = true, silent = true })
 -- 加载LuaSnip
 local ls = require("luasnip")
 
