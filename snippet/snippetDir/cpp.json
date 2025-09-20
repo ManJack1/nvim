@@ -1,1 +1,1 @@
-{"todo":{"prefix":"todo","body":"//TODO: ${1:input your comment}"}}
+{"note":{"prefix":"note","body":"// NOTE::${1:input your note-commant}"},"todo":{"prefix":"todo","body":"//TODO: ${1:input your comment}"},"fix":{"body":"// FIX: ${1:input your fix-commant}","prefix":"fix"}}

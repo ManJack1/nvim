@@ -3,7 +3,6 @@ return {
   config = function()
     require("render-markdown").setup({
       completions = { lsp = { enabled = true } },
-      indent = { enabled = true },
       heading = {
         icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },
         right_pad = 1,
