@@ -179,3 +179,12 @@ vim.keymap.set({ "i", "s" }, "<C-p>", function()
     return ""
   end
 end, { expr = true })
+
+map("n", "<leader>Te", function()
+  require("scissors").editSnippet()
+end, { desc = "Snippet: Edit" })
+
+-- when used in visual mode, prefills the selection as snippet body
+map({ "n", "x" }, "<leader>Ta", function()
+  require("scissors").addNewSnippet()
+end, { desc = "Snippet: Add" })
