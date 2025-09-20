@@ -1,4 +1,3 @@
-local parsers = require("nvim-treesitter.parsers")
 local M = {}
 
 ---
@@ -67,6 +66,38 @@ local latex_math_environments = new_set({
   "eqnarray*",
 })
 
+-- 安全地获取 treesitter 解析器（兼容不同版本的 API）
+local function get_parser_safe(buf, lang)
+  -- 方法 1: 尝试使用 nvim-treesitter.parsers
+  local ok1, parsers = pcall(require, "nvim-treesitter.parsers")
+  if ok1 and parsers.get_parser then
+    local ok2, parser = pcall(parsers.get_parser, buf, lang)
+    if ok2 and parser then
+      return parser
+    end
+  end
+
+  -- 方法 2: 尝试使用原生 vim.treesitter API
+  if vim.treesitter.get_parser then
+    local ok3, parser = pcall(vim.treesitter.get_parser, buf, lang)
+    if ok3 and parser then
+      return parser
+    end
+  end
+
+  -- 方法 3: 尝试使用 vim.treesitter.get_string_parser (备用)
+  if vim.treesitter.get_string_parser then
+    local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+    local content = table.concat(lines, "\n")
+    local ok4, parser = pcall(vim.treesitter.get_string_parser, content, lang)
+    if ok4 and parser then
+      return parser
+    end
+  end
+
+  return nil
+end
+
 -- 安全地获取节点文本，防止错误
 local function safe_get_node_text(node, bufnr)
   if not node then
@@ -74,21 +105,21 @@ local function safe_get_node_text(node, bufnr)
   end
 
   -- 检查节点是否有效
-  local start_row, start_col, end_row, end_col = node:range()
-  if start_row < 0 or end_row < 0 or start_col < 0 or end_col < 0 then
+  local ok1, start_row, start_col, end_row, end_col = pcall(node.range, node)
+  if not ok1 or start_row < 0 or end_row < 0 or start_col < 0 or end_col < 0 then
     return ""
   end
 
   -- 使用 pcall 安全调用
-  local ok, text = pcall(vim.treesitter.get_node_text, node, bufnr or 0)
-  if not ok or not text then
+  local ok2, text = pcall(vim.treesitter.get_node_text, node, bufnr or 0)
+  if not ok2 or not text then
     return ""
   end
 
   return text
 end
 
--- 获取当前光标所在的节点
+-- 获取当前光标所在的节点（修复版本）
 local function get_node_at_cursor()
   local cursor = vim.api.nvim_win_get_cursor(0)
   -- Tree-sitter 使用 0-indexed API
@@ -100,10 +131,12 @@ local function get_node_at_cursor()
   local filetype
   if vim.api.nvim_get_option_value then
     -- Neovim 0.10+
-    filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
+    local ok, ft = pcall(vim.api.nvim_get_option_value, "filetype", { buf = buf })
+    filetype = ok and ft or vim.bo.filetype
   else
     -- 旧版本兼容
-    filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+    local ok, ft = pcall(vim.api.nvim_buf_get_option, buf, "filetype")
+    filetype = ok and ft or vim.bo.filetype
   end
 
   -- 简单处理，可以根据需要扩展到 quarto, rmarkdown 等
@@ -117,14 +150,14 @@ local function get_node_at_cursor()
   end
 
   -- 安全地获取解析器
-  local parser = parsers.get_parser(buf, lang)
+  local parser = get_parser_safe(buf, lang)
   if not parser then
     return nil
   end
 
   -- 解析语法树
-  local trees = parser:parse()
-  if not trees or #trees == 0 then
+  local ok1, trees = pcall(parser.parse, parser)
+  if not ok1 or not trees or #trees == 0 then
     return nil
   end
 
@@ -133,14 +166,14 @@ local function get_node_at_cursor()
     return nil
   end
 
-  local root = tree:root()
-  if not root then
+  local ok2, root = pcall(tree.root, tree)
+  if not ok2 or not root then
     return nil
   end
 
   -- 安全地获取光标位置的节点
-  local ok, node = pcall(root.descendant_for_range, root, cursor_row, cursor_col, cursor_row, cursor_col)
-  if not ok or not node then
+  local ok3, node = pcall(root.descendant_for_range, root, cursor_row, cursor_col, cursor_row, cursor_col)
+  if not ok3 or not node then
     return nil
   end
 
@@ -213,7 +246,12 @@ end
 -- 检查是否在内联数学模式中（$ ... $ 或 $$ ... $$）
 local function is_in_inline_math(cursor_row, cursor_col)
   -- 获取当前行
-  local line = vim.api.nvim_buf_get_lines(0, cursor_row, cursor_row + 1, false)[1]
+  local ok, lines = pcall(vim.api.nvim_buf_get_lines, 0, cursor_row, cursor_row + 1, false)
+  if not ok or not lines or #lines == 0 then
+    return false
+  end
+
+  local line = lines[1]
   if not line then
     return false
   end
@@ -251,62 +289,79 @@ local function is_in_inline_math(cursor_row, cursor_col)
   return false
 end
 
--- 检测是否在 LaTeX 或 Markdown 的数学环境中
+-- 检测是否在 LaTeX 或 Markdown 的数学环境中（主函数，添加错误处理）
 function M.in_mathzone()
-  local node = get_node_at_cursor()
-  if not node then
+  -- 添加整体错误处理
+  local ok, result = pcall(function()
+    local node = get_node_at_cursor()
+    if not node then
+      return false
+    end
+
+    local buf = vim.api.nvim_get_current_buf()
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    local cursor_row = cursor[1] - 1 -- 转换为 0-indexed
+    local cursor_col = cursor[2]
+
+    -- 首先检查是否在内联数学模式中
+    if is_in_inline_math(cursor_row, cursor_col) then
+      return true
+    end
+
+    -- 遍历节点树，从当前节点向上查找
+    local current_node = node
+    while current_node do
+      local node_type = current_node:type()
+
+      -- 1. 直接检查节点类型是否在我们的数学节点集合中
+      if math_node_types[node_type] then
+        return true
+      end
+
+      -- 2. 特别处理 LaTeX 的通用环境 (generic_environment)
+      --    因为某些解析器不会为所有数学环境提供唯一的节点类型
+      if is_in_latex_math_environment(current_node, buf) then
+        return true
+      end
+
+      -- 3. 检查 Markdown 中的 LaTeX 代码块
+      if is_in_markdown_math_block(current_node, buf) then
+        return true
+      end
+
+      -- 4. 额外检查：某些节点可能包含数学内容
+      if node_type == "text" or node_type == "inline" then
+        local text = safe_get_node_text(current_node, buf)
+        if text and text:match("%$.*%$") then
+          return true
+        end
+      end
+
+      current_node = current_node:parent()
+    end
+
+    return false
+  end)
+
+  -- 如果出现任何错误，返回 false（默认为非数学环境）
+  if not ok then
+    -- 可选：记录错误日志
+    -- vim.notify("Math zone detection error: " .. tostring(result), vim.log.levels.WARN)
     return false
   end
 
-  local buf = vim.api.nvim_get_current_buf()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local cursor_row = cursor[1] - 1 -- 转换为 0-indexed
-  local cursor_col = cursor[2]
-
-  -- 首先检查是否在内联数学模式中
-  if is_in_inline_math(cursor_row, cursor_col) then
-    return true
-  end
-
-  -- 遍历节点树，从当前节点向上查找
-  local current_node = node
-  while current_node do
-    local node_type = current_node:type()
-
-    -- 1. 直接检查节点类型是否在我们的数学节点集合中
-    if math_node_types[node_type] then
-      return true
-    end
-
-    -- 2. 特别处理 LaTeX 的通用环境 (generic_environment)
-    --    因为某些解析器不会为所有数学环境提供唯一的节点类型
-    if is_in_latex_math_environment(current_node, buf) then
-      return true
-    end
-
-    -- 3. 检查 Markdown 中的 LaTeX 代码块
-    if is_in_markdown_math_block(current_node, buf) then
-      return true
-    end
-
-    -- 4. 额外检查：某些节点可能包含数学内容
-    if node_type == "text" or node_type == "inline" then
-      local text = safe_get_node_text(current_node, buf)
-      if text and text:match("%$.*%$") then
-        return true
-      end
-    end
-
-    current_node = current_node:parent()
-  end
-
-  return false
+  return result
 end
 
 -- 检测是否在文本环境中
 function M.in_text()
   -- 如果不在数学环境中，则认为在文本环境中
   return not M.in_mathzone()
+end
+
+-- 条件函数，供 LuaSnip 使用
+function M.condition()
+  return M.in_mathzone()
 end
 
 -- 添加调试功能，帮助排查问题
@@ -323,7 +378,11 @@ function M.debug_mathzone()
   print("🔍 数学环境调试信息:")
   print(string.format("   光标位置: (%d, %d)", cursor[1], cursor[2]))
   print(string.format("   文件类型: %s", vim.bo.filetype))
-  print(string.format("   当前行: %s", vim.api.nvim_get_current_line()))
+
+  local ok, current_line = pcall(vim.api.nvim_get_current_line)
+  if ok then
+    print(string.format("   当前行: %s", current_line))
+  end
 
   -- 显示节点层次结构
   print("📊 节点层次 (从叶子到根):")
