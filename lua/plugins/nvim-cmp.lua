@@ -1,4 +1,3 @@
-local lspkind = require("lspkind")
 return {
   -- 安装 nvim-cmp 和相关插件
   {
