@@ -1,0 +1,5 @@
+{
+  "def": { "body": "#define ${1:macro}", "prefix": "def" },
+  "to": { "body": "//TODO: ${1:comment-todo}", "prefix": "to" }
+}
+

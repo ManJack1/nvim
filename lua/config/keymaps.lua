@@ -240,4 +240,13 @@ local function cycle_header()
   end
 end
 
-vim.keymap.set("n", "<leader>mh", cycle_header, { desc = "Cycle markdown header" })
+map("n", "<leader>mh", cycle_header, { desc = "Cycle markdown header" })
+
+map("n", "<leader>Se", function()
+  require("scissors").editSnippet()
+end, { desc = "Snippet: Edit" })
+
+-- when used in visual mode, prefills the selection as snippet body
+map({ "n", "x" }, "<leader>Sa", function()
+  require("scissors").addNewSnippet()
+end, { desc = "Snippet: Add" })

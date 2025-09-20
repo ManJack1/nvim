@@ -29,6 +29,10 @@
         "path": "./cpp.json"
       },
       {
+        "language": "c",
+        "path": "./c.json"
+      },
+      {
         "language": "tex",
         "path": "./tex.json"
       }
