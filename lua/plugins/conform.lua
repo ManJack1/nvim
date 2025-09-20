@@ -1,7 +1,19 @@
 return {
   "stevearc/conform.nvim",
   opts = {
+    formatters = {
+      options = {
+        ignore_errors = true,
+        lang_to_formatters = {
+          cpp = "clang-format",
+          python = { "isort", "black" },
+          c = "clang-format",
+          lua = "stylua",
+        },
+      },
+    },
     formatters_by_ft = {
+
       lua = { "stylua" },
       -- Conform will run multiple formatters sequentially
       python = { "isort", "black" },
@@ -15,7 +27,7 @@ return {
       c = { "clang-format" },
       cpp = { "clang-format" },
 
-      markdown = { "markdownlint-cli2", "markdown-toc" },
+      markdown = { "prettierd", "injected" },
     },
   },
 }

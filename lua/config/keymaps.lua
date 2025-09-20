@@ -188,3 +188,5 @@ end, { desc = "Snippet: Edit" })
 map({ "n", "x" }, "<leader>Ta", function()
   require("scissors").addNewSnippet()
 end, { desc = "Snippet: Add" })
+
+map("n", "<leader>ip", "<cmd>PasteImage<cr>", { desc = "paste image for system clipboard" })
