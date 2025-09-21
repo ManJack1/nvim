@@ -110,3 +110,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     })
   end,
 })
+
+-- 当打开 markdown 文件时自动禁用诊断
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.diagnostic.disable(0)
+  end,
+})

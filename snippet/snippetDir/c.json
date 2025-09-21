@@ -1,5 +1,1 @@
-{
-  "def": { "body": "#define ${1:macro}", "prefix": "def" },
-  "to": { "body": "//TODO: ${1:comment-todo}", "prefix": "to" }
-}
-
+{"to":{"prefix":"to","body":"//TODO: ${1:comment-todo}"},"main":{"prefix":"main","body":["int main(int argc, char *argv[])","{","  ${1:intput your code}","  return 0;","}"]},"def":{"prefix":"def","body":"#define ${1:macro}"}}

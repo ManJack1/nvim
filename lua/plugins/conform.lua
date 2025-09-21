@@ -49,6 +49,7 @@ return {
       cpp = { "clang-format" },
 
       markdown = { "prettierd", "injected" },
+      asm = { "asm-fmt" },
     },
   },
 }
