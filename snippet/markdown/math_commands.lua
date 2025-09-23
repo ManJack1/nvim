@@ -231,15 +231,17 @@ return {
     { trig = "cmat", snippetType = "autosnippet" },
     fmta(
       [[
-      \begin{pmatrix}
+      \begin{bmatrix}
+       <>\\
        <>\\
        \vdots \\
        <>
-       \end{pmatrix} <>
+       \end{bmatrix} <>
       ]],
       {
         i(1),
         i(2),
+        i(3),
         i(0),
       }
     ),

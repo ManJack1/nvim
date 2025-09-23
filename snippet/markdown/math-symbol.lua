@@ -147,6 +147,7 @@ return {
   s({ trig = ";G", snippetType = "autosnippet" }, { t("\\Gamma") }, { condition = tex.in_mathzone }),
   s({ trig = ";g", snippetType = "autosnippet" }, { t("\\gamma") }, { condition = tex.in_mathzone }),
   s({ trig = ";;", snippetType = "autosnippet" }, { t("&") }, { condition = tex.in_mathzone }),
+  s({ trig = "==", snippetType = "autosnippet" }, { t("&=") }, { condition = tex.in_mathzone }),
 
   s(
     { trig = "(%w+);;", regTrig = true, snippetType = "autosnippet" },
