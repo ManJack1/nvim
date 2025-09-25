@@ -143,7 +143,7 @@ return {
   s({ trig = "fa", snippetType = "autosnippet" }, { t("\\forall") }, { condition = tex.in_mathzone }),
 
   s({ trig = ";o", snippetType = "autosnippet" }, { t("\\omega") }, { condition = tex.in_mathzone }),
-
+  s({ trig = "et", snippetType = "autosnippet" }, { t("\\eta") }, { condition = tex.in_mathzone }),
   s({ trig = ";G", snippetType = "autosnippet" }, { t("\\Gamma") }, { condition = tex.in_mathzone }),
   s({ trig = ";g", snippetType = "autosnippet" }, { t("\\gamma") }, { condition = tex.in_mathzone }),
   s({ trig = ";;", snippetType = "autosnippet" }, { t("&") }, { condition = tex.in_mathzone }),
