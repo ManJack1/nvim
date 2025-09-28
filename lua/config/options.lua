@@ -250,3 +250,37 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+-- 方法3: 智能换行补全（推荐）
+-- 需要配合按键映射使用
+local function auto_item()
+  local current_line = vim.fn.getline(".")
+  local line_num = vim.fn.line(".")
+
+  -- 检查是否在列表环境中
+  local lines = vim.api.nvim_buf_get_lines(0, 0, line_num, false)
+  local in_list = false
+
+  for i = #lines, 1, -1 do
+    local line = lines[i]
+    if line:match("\\end{itemize}") or line:match("\\end{enumerate}") then
+      break
+    elseif line:match("\\begin{itemize}") or line:match("\\begin{enumerate}") then
+      in_list = true
+      break
+    end
+  end
+
+  if in_list then
+    -- 如果当前行是 \item，在下一行插入新的 \item
+    if current_line:match("\\item") then
+      vim.api.nvim_put({ "" }, "l", true, true)
+      vim.api.nvim_put({ "\\item " }, "c", true, true)
+      vim.cmd("startinsert!")
+      return
+    end
+  end
+
+  -- 否则正常换行
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", true)
+end

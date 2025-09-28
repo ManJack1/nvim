@@ -1,1 +1,1 @@
-{"note":{"prefix":"note","body":"// NOTE::${1:input your note-commant}"},"todo":{"prefix":"todo","body":"//TODO: ${1:input your comment}"},"fix":{"body":"// FIX: ${1:input your fix-commant}","prefix":"fix"}}
+{"co":{"body":"std::cout << ${0:message};","prefix":"co"},"note":{"body":"// NOTE::${1:input your note-commant}","prefix":"note"},"fix":{"prefix":"fix","body":"// FIX: ${1:input your fix-commant}"},"todo":{"body":"//TODO: ${1:input your comment}","prefix":"todo"}}
