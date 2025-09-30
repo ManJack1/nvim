@@ -33,7 +33,7 @@ return {
       },
       {
         type = "text",
-        val = "                                A_   z", -- Adjusted spaces if needed
+        val = "                                 A_   z", -- Adjusted spaces if needed
         opts = { hl = "NeovimDashboardLogo5", shrink_margin = false, position = "center" },
       },
       {
@@ -43,7 +43,7 @@ return {
       },
       {
         type = "text",
-        val = '                              _||"_', -- Adjusted spaces if needed
+        val = "                              _|| |_", -- Adjusted spaces if needed
         opts = { hl = "NeovimDashboardLogo5", shrink_margin = false, position = "center" },
       },
       {
