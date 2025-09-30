@@ -3,6 +3,17 @@ return {
   "stevearc/oil.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
+    local wk = require("which-key")
+    wk.add({
+      {
+        "<leader>o",
+        function()
+          require("oil").toggle_float()
+        end,
+        desc = "Oil_Float",
+        icon = "",
+      },
+    })
     require("oil").setup({
 
       default_file_explorer = true,
