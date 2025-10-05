@@ -318,7 +318,8 @@ return {
         i(2, "n"), -- 输入最大下标，默认 "n"
         i(0),
       }
-    )
+    ),
+    { condition = tex.in_mathzone }
   ),
   s(
     { trig = "bc", regTrig = true, snippetType = "autosnippet" },
