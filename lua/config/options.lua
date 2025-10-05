@@ -14,7 +14,7 @@ if vim.fn.has("macunix") == 1 then
   vim.g.python3_host_prog = "/opt/homebrew/bin/python" -- 根据你的实际路径调整
   vim.g.python3_host_prog = "~/.venv/bin/python"
 else
-  vim.g.python3_host_prog = "/usr/sbin/python3" -- 根据你的实际路径调整
+  vim.g.python3_host_prog = "/etc/profiles/per-user/manjack/bin/python"
 end
 
 -- vimtex 配置
