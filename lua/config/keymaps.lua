@@ -28,7 +28,7 @@ wk.add({
 })
 
 -- Telescope 映射
-map("n", "<leader>so", ":Telescope vim_options<CR>", { desc = "Options" })
+map("n", "<leader>so", ":Telescope vim_options<CR>", { desc = "search options" })
 map("n", "<leader>se", ":Telescope diagnostics<CR>", { desc = "View Errors" })
 map("i", "<C-l>", "<Right>", opts)
 map("i", "<C-h>", "<Left>", opts)
@@ -41,3 +41,5 @@ map("i", "<C-j>", "<Cmd>lua jump_to_next_cell()<CR>", opts)
 map("i", "<C-k>", "<Cmd>lua jump_to_previous_cell()<CR>", opts)
 
 wk.add({ { "<leader>K", icon = "🍬" } })
+
+map("n", "<leader>aP", "<Cmd>CopilotChatPrompts<CR>", { desc = "Copilot Prompts" })
