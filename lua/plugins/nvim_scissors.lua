@@ -14,17 +14,15 @@ return {
   "chrisgrieser/nvim-scissors",
   dependencies = "nvim-telescope/telescope.nvim",
   config = function()
+    local wk = require("which-key")
+    local map = vim.keymap.set
+
     require("scissors").setup({
       snippetDir = "~/.config/nvim/snippet/snippetDir",
     })
     require("luasnip.loaders.from_vscode").lazy_load({
       paths = { "~/.config/nvim/snippet/snippetDir" },
     })
-  end,
-  config = function()
-    local wk = require("which-key")
-    local map = vim.keymap.set
-
     map("n", "<leader>Te", function()
       require("scissors").editSnippet()
     end, { desc = "Snippet: Edit" })
