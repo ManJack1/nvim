@@ -42,4 +42,4 @@ map("i", "<C-k>", "<Cmd>lua jump_to_previous_cell()<CR>", opts)
 
 wk.add({ { "<leader>K", icon = "🍬" } })
 
-map("n", "<leader>aP", "<Cmd>CopilotChatPrompts<CR>", { desc = "Copilot Prompts" })
+map({ "n", "v" }, "<leader>aP", "<Cmd>CopilotChatPrompts<CR>", { desc = "Copilot Prompts" })
