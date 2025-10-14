@@ -3,6 +3,7 @@ return {
   ft = "markdown",
   config = function()
     require("render-markdown").setup({
+      latex = { enabled = false },
       completions = { lsp = { enabled = true } },
       heading = {
         icons = { "󰎤 ", "󰎧 ", "󰎪 ", "󰎭 ", "󰎱 ", "󰎳 " },

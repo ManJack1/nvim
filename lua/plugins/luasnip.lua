@@ -1,11 +1,10 @@
 return {
   event = "VeryLazy",
   "L3MON4D3/LuaSnip",
+  build = "make install_jsregexp",
   dependencies = { "rafamadriz/friendly-snippets" },
   config = function()
     local ls = require("luasnip")
-    local ls = require("luasnip")
-
     -- 定义可以Tabout的字符
     local tabout_forward_chars = { "]", ")", "}", ">", '"', "'", "`", "," }
     local tabout_backward_chars = { "[", "(", "{", "<", '"', "'", "`" }
