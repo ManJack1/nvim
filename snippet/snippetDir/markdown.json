@@ -1,1 +1,1 @@
-{"proof":{"prefix":"proof","body":"_proof:_ $0"},"cb":{"body":["```${1:language}","${0:your code}","```"],"prefix":"cb"}}
+{"cpp_code":{"prefix":"cpp_code","body":["```cpp","${1:your code}","```"]},"proof":{"body":"_proof:_ $0","prefix":"proof"},"cb":{"body":["```${1:language}","${0:your code}","```"],"prefix":"cb"}}
