@@ -34,7 +34,7 @@ return {
       },
     },
     formatters_by_ft = {
-      kdl = { "kdlfmt" },
+      -- kdl = { "kdlfmt" },
 
       lua = { "stylua" },
       -- Conform will run multiple formatters sequentially
