@@ -1,4 +1,20 @@
 return {
+  -- ~/.config/nvim/lua/plugins/copilot.lua
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = {
+      "folke/snacks.nvim", -- 确保 Snacks 先加载
+    },
+    config = function()
+      -- 安全检查 Snacks 是否存在
+      if not package.loaded["snacks"] then
+        vim.notify("Snacks not loaded, skipping copilot-cmp config", vim.log.levels.WARN)
+        return
+      end
+
+      require("copilot_cmp").setup()
+    end,
+  },
   -- 安装 nvim-cmp 和相关插件
   {
     "xzbdmw/nvim-cmp",
