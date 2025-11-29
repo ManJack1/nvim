@@ -1,20 +1,4 @@
 return {
-  -- ~/.config/nvim/lua/plugins/copilot.lua
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = {
-      "folke/snacks.nvim", -- 确保 Snacks 先加载
-    },
-    config = function()
-      -- 安全检查 Snacks 是否存在
-      if not package.loaded["snacks"] then
-        vim.notify("Snacks not loaded, skipping copilot-cmp config", vim.log.levels.WARN)
-        return
-      end
-
-      require("copilot_cmp").setup()
-    end,
-  },
   -- 安装 nvim-cmp 和相关插件
   {
     "xzbdmw/nvim-cmp",
@@ -37,32 +21,32 @@ return {
 
       -- 自定义图标
       local kind_icons = {
-        Text = " Text",
-        Method = " Method",
-        Function = " Function",
-        Constructor = " Constructor",
-        Field = " Field",
-        Variable = " Variable",
-        Class = " Class",
-        Interface = " Interface",
-        Module = " Module",
-        Property = " Property",
-        Unit = " Unit",
-        Value = " Value",
-        Enum = " Enum",
-        Keyword = " Keyword",
-        Snippet = " Snippet",
-        Color = " Color",
-        File = " File",
-        Reference = " Reference",
-        Folder = " Folder",
-        EnumMember = " EnumMember",
-        Constant = " Constant",
-        Struct = " Struct",
-        Event = " Event",
-        Operator = " Operator",
-        TypeParameter = " TypeParameter",
-        Copilot = " Copilot",
+        Text = " Text",
+        Method = " Method",
+        Function = " Function",
+        Constructor = " Constructor",
+        Field = " Field",
+        Variable = " Variable",
+        Class = " Class",
+        Interface = " Interface",
+        Module = " Module",
+        Property = " Property",
+        Unit = " Unit",
+        Value = " Value",
+        Enum = " Enum",
+        Keyword = " Keyword",
+        Snippet = " Snippet",
+        Color = " Color",
+        File = " File",
+        Reference = " Reference",
+        Folder = " Folder",
+        EnumMember = " EnumMember",
+        Constant = " Constant",
+        Struct = " Struct",
+        Event = " Event",
+        Operator = " Operator",
+        TypeParameter = " TypeParameter",
+        Copilot = " Copilot",
       }
 
       vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -72,38 +56,6 @@ return {
       -- 加载 friendly-snippets
       require("luasnip.loaders.from_vscode").lazy_load()
 
-      local tex_mapping = {
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-      }
-
-      local default_mapping = {
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-      }
-      -- 自动命令回调函数
-      local function set_mappings()
-        if vim.bo.filetype == "tex" then
-          cmp.setup.buffer({ mapping = tex_mapping })
-        else
-          cmp.setup.buffer({ mapping = default_mapping })
-        end
-      end
-      -- 定义和设置自动命令
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "*",
-        callback = set_mappings,
-      })
       -- 配置 nvim-cmp
       cmp.setup({
         snippet = {
@@ -111,7 +63,15 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        -- mapping = cmp.mapping.preset.cmdline(),
+        mapping = {
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<C-e>"] = cmp.mapping.abort(),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        },
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
@@ -146,15 +106,6 @@ return {
             return vim_item
           end,
         },
-        -- window = {
-        --   completion = {
-        --     border = "single",
-        --     winhighlight = "Normal:Pmenu,CursorLine:MyPmenuSel,Search:None",
-        --   },
-        --   documentation = {
-        --     border = "rounded",
-        --   },
-        -- },
       })
 
       -- 为 `/` 命令行模式配置 buffer 源
