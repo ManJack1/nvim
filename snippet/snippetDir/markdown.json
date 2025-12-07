@@ -1,1 +1,1 @@
-{"cpp_code":{"prefix":"cpp_code","body":["```cpp","${1:your code}","```"]},"proof":{"body":"_proof:_ $0","prefix":"proof"},"cb":{"body":["```${1:language}","${0:your code}","```"],"prefix":"cb"}}
+{"cb":{"body":["```${1:language}","${0:your code}","```"],"prefix":"cb"},"proof":{"body":"_proof:_ $0","prefix":"proof"},"cpp_code":{"body":["```cpp","${1:your code}","```"],"prefix":"cpp_code"},"block":{"body":["```$1","$2","```"],"prefix":"block"}}
