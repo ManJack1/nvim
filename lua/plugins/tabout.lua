@@ -1,6 +1,6 @@
 return {
   "abecodes/tabout.nvim",
-  lazy = false,
+  event = "InsertEnter",
   config = function()
     require("tabout").setup({
       tabkey = "", -- 禁用默认的 Tab 键绑定
