@@ -1,6 +1,5 @@
 return {
   {
-    lazy = false,
     "KeitaNakamura/tex-conceal.vim",
     ft = "tex", -- 仅在 tex 文件类型时加载
     config = function()

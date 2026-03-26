@@ -2,6 +2,7 @@ return {
   -- 安装 nvim-cmp 和相关插件
   {
     "xzbdmw/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-emoji",

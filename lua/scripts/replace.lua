@@ -46,5 +46,3 @@ vim.keymap.set("x", "<C-r>", visual_replace, {
   silent = false,
   desc = "Replace visual selection",
 })
-
-print("Visual replace loaded: Select text and press Ctrl-r")
