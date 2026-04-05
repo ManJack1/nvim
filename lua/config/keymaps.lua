@@ -34,8 +34,8 @@ map("v", "<C-l>", function()
   vim.cmd("normal! $")
 end, opts)
 
-map("i", "<C-j>", jump_to_next_cell, opts)
-map("i", "<C-k>", jump_to_previous_cell, opts)
+map("i", "<C-j>", "<cmd>lua jump_to_next_cell()<CR>", opts)
+map("i", "<C-k>", "<cmd>lua jump_to_previous_cell()<CR>", opts)
 
 wk.add({ { "<leader>K", icon = "🍬" } })
 
@@ -45,5 +45,5 @@ map({ "n", "v" }, "<leader>aA", "<Cmd>CopilotChat<CR>", { desc = "Copilot Prompt
 wk.add({ "<leader>m", group = "markdown-table", icon = "🍬" })
 map("n", "<leader>mm", "<cmd>TableModeToggle<CR>", { desc = "Toggle Table Mode" })
 map("n", "<leader>mr", "<cmd>TableModeRealign<CR>", { desc = "Realign Table" })
-map("n", "<leader>mc", InsertTableRowBelow, { desc = "Insert Table Row Below" })
+map("n", "<leader>mc", "<cmd>lua InsertTableRowBelow()<CR>", { desc = "Insert Table Row Below" })
 map("n", "<leader>sl", "<cmd>Telescope luasnip<CR>", { desc = "Telescope luasnip" })
