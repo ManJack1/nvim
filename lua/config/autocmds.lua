@@ -4,36 +4,35 @@
 
 ---------------illustrate
 -- 定义一个函数来设置 tex 文件类型的键映射
-local function set_tex_keymaps()
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>is",
-    '<cmd>lua require"illustrate".create_and_open_svg()<CR>',
-    { noremap = true, silent = true, desc = "Create and open a new SVG file with provided name." }
-  )
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>ia",
-    '<cmd>lua require"illustrate".create_and_open_ai()<CR>',
-    { noremap = true, silent = true, desc = "Create and open a new Adobe Illustrator file with provided name." }
-  )
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>io",
-    '<cmd>lua require"illustrate".open_under_cursor()<CR>',
-    { noremap = true, silent = true, desc = "Open file under cursor (or file within environment under cursor)." }
-  )
-  vim.api.nvim_set_keymap(
-    "n",
-    "<leader>if",
-    '<cmd>lua require"illustrate.finder".search_and_open()<CR>',
-    { noremap = true, silent = true, desc = "Use telescope to search and open illustrations in default app." }
-  )
-  vim.api.nvim_set_keymap("n", "<leader>ic", '<cmd>lua require"illustrate.finder".search_create_copy_and_open()<CR>', {
-    noremap = true,
-    silent = true,
+local function set_tex_keymaps(event)
+  local map = vim.keymap.set
+  local opts = { buffer = event.buf, silent = true }
+
+  map("n", "<leader>is", function()
+    require("illustrate").create_and_open_svg()
+  end, vim.tbl_extend("force", opts, { desc = "Create and open a new SVG file with provided name." }))
+
+  map("n", "<leader>ia", function()
+    require("illustrate").create_and_open_ai()
+  end, vim.tbl_extend("force", opts, { desc = "Create and open a new Adobe Illustrator file with provided name." }))
+
+  map("n", "<leader>io", function()
+    require("illustrate").open_under_cursor()
+  end, vim.tbl_extend("force", opts, { desc = "Open file under cursor (or file within environment under cursor)." }))
+
+  map("n", "<leader>if", function()
+    require("illustrate.finder").search_and_open()
+  end, vim.tbl_extend("force", opts, { desc = "Use telescope to search and open illustrations in default app." }))
+
+  map("n", "<leader>ic", function()
+    require("illustrate.finder").search_create_copy_and_open()
+  end, vim.tbl_extend("force", opts, {
     desc = "Use telescope to search existing file, copy it with new name, and open it in default app.",
-  })
+  }))
+end
+
+local function open_trouble_quickfix()
+  vim.cmd("Trouble quickfix")
 end
 
 -- 创建一个自动命令，当文件类型为 tex 时调用上述函数
@@ -47,16 +46,12 @@ vim.g.vimtex_quickfix_mode = 0
 -- 配置 VimTeX 使用 Trouble 插件
 vim.api.nvim_create_autocmd("User", {
   pattern = "VimtexEventCompileSuccess",
-  callback = function()
-    vim.cmd("Trouble quickfix")
-  end,
+  callback = open_trouble_quickfix,
 })
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VimtexEventCompileFailed",
-  callback = function()
-    vim.cmd("Trouble quickfix")
-  end,
+  callback = open_trouble_quickfix,
 })
 
 -- Ensure diagnostic configuration is set for each attached LSP
@@ -72,6 +67,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()
-    vim.diagnostic.disable(0)
+    vim.diagnostic.enable(false, { bufnr = 0 })
   end,
 })

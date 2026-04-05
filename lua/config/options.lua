@@ -1,8 +1,9 @@
-local filetype = require("vim.filetype")
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 -- 启用自动换行
+
+local is_mac = vim.fn.has("macunix") == 1
 
 vim.g.maplocalleader = "m"
 
@@ -10,15 +11,14 @@ vim.opt.wrap = true
 -- 当窗口尺寸变化时自动换行
 vim.opt.linebreak = true
 
-if vim.fn.has("macunix") == 1 then
-  vim.g.python3_host_prog = "/opt/homebrew/bin/python" -- 根据你的实际路径调整
-  vim.g.python3_host_prog = "~/.venv/bin/python"
+if is_mac then
+  vim.g.python3_host_prog = vim.fn.expand("~/.venv/bin/python")
 else
   vim.g.python3_host_prog = "/etc/profiles/per-user/manjack/bin/python"
 end
 
 -- vimtex 配置
-if vim.fn.has("macunix") == 1 then
+if is_mac then
   -- macOS: 使用 Skim
   vim.g.vimtex_view_method = "skim"
   vim.g.vimtex_view_general_viewer = "/Applications/Skim.app/Contents/SharedSupport/displayline"
@@ -77,7 +77,7 @@ if vim.g.neovide then
 end
 vim.g.tokyonight_dark_float = false
 
-if vim.fn.has("macunix") == 1 then
+if is_mac then
   vim.g.smartim_default = "com.apple.keylayout.ABC"
 end
 
@@ -98,15 +98,6 @@ vim.g.vimtex_compiler_latexmk = {
 }
 
 vim.g.vimtex_syntax_enabled = 0
-
--- Ensure diagnostic configuration is set for each attached LSP
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function()
-    vim.diagnostic.config({
-      virtual_text = false, -- Disable virtual text
-    })
-  end,
-})
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
