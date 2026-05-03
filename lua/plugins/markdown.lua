@@ -21,7 +21,7 @@ return {
             rendered = "   󰥔 ",
           },
         },
-        position = "inline",
+        position = nil,
         unchecked = {
           icon = "   󰄱 ",
         },

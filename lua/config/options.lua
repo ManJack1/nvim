@@ -12,7 +12,10 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 
 if is_mac then
-  vim.g.python3_host_prog = vim.fn.expand("~/.venv/bin/python")
+  local python3_host = vim.fn.expand("~/.venv/bin/python")
+  if vim.fn.executable(python3_host) == 1 then
+    vim.g.python3_host_prog = python3_host
+  end
 else
   vim.g.python3_host_prog = "/etc/profiles/per-user/manjack/bin/python"
 end
