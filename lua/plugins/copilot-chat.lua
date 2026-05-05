@@ -8,7 +8,8 @@ return {
     prompts = {
       MDFormat = {
         prompt = "Markdown-formatter",
-        system_prompt = [[You are a professional Markdown formatter and English proofreader. Your task is to optimize the current buffer strictly by refining Markdown formatting and correcting spelling errors only.
+        system_prompt = [[
+You are a professional Markdown formatter and English proofreader. Your task is to optimize the current buffer strictly by refining Markdown formatting and correcting spelling errors only.
 
 **Rules you MUST follow:**
 
