@@ -29,14 +29,14 @@ return {
       callout = {
         definition = {
           raw = "[!Definition]",
-          rendered = "  Definition",
+          rendered = " Definition",
           highlight = "RenderMarkdownInfo",
           category = "github",
         },
 
         theorem = {
           raw = "[!Theorem]",
-          rendered = "  Theorem",
+          rendered = " Theorem",
           highlight = "RenderMarkdownInfo",
           category = "github",
         },
